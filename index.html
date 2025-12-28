@@ -29,7 +29,7 @@
         }
         #invitation-cover.opened { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 
-        /* EFECTO PARALLAX OPTIMIZADO */
+        /* EFECTO PARALLAX */
         .bg-parallax {
             background-attachment: fixed;
             background-position: center;
@@ -38,7 +38,6 @@
             position: relative;
         }
 
-        /* Ajuste para móviles para que las imágenes se vean nítidas */
         @media (max-width: 1024px) {
             .bg-parallax { background-attachment: scroll; }
         }
@@ -51,16 +50,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             border: 8px solid white;
         }
-
-        /* CONTENEDOR DEL MAPA ESTABLE */
-        .map-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0; overflow: hidden;
-            border: 2px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     </style>
 </head>
 <body class="font-sans overflow-x-hidden">
@@ -101,31 +90,70 @@
             </div>
         </section>
 
-        <section class="py-20 md:py-24 px-6 bg-parallax"
+        <section class="py-24 md:py-32 px-6 text-center bg-parallax"
+                 style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop');">
+            <div class="overlay-crema-viva" style="background-color: rgba(248, 246, 241, 0.75);"></div>
+            <div class="max-w-4xl mx-auto relative z-10">
+                <h3 class="font-script text-7xl text-[#7a8464] mb-16">Itinerario</h3>
+                
+                <div class="space-y-16">
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <div class="md:w-1/3 text-center md:text-right font-serif text-3xl italic">18:00h</div>
+                        <div class="w-12 h-12 bg-[#7a8464] rounded-full flex items-center justify-center shadow-lg"><span class="text-white text-xl">💍</span></div>
+                        <div class="md:w-1/3 text-center md:text-left">
+                            <p class="font-serif text-2xl uppercase tracking-widest text-[#7a8464] font-bold">Ceremonia</p>
+                            <p class="font-serif text-lg opacity-70 italic">Sí, quiero</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <div class="md:w-1/3 text-center md:text-right font-serif text-3xl italic">19:00h</div>
+                        <div class="w-12 h-12 bg-[#7a8464] rounded-full flex items-center justify-center shadow-lg"><span class="text-white text-xl">🥂</span></div>
+                        <div class="md:w-1/3 text-center md:text-left">
+                            <p class="font-serif text-2xl uppercase tracking-widest text-[#7a8464] font-bold">Cóctel</p>
+                            <p class="font-serif text-lg opacity-70 italic">Brindis y aperitivos</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <div class="md:w-1/3 text-center md:text-right font-serif text-3xl italic">21:00h</div>
+                        <div class="w-12 h-12 bg-[#7a8464] rounded-full flex items-center justify-center shadow-lg"><span class="text-white text-xl">🍽️</span></div>
+                        <div class="md:w-1/3 text-center md:text-left">
+                            <p class="font-serif text-2xl uppercase tracking-widest text-[#7a8464] font-bold">Banquete</p>
+                            <p class="font-serif text-lg opacity-70 italic">Cena bajo las estrellas</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <div class="md:w-1/3 text-center md:text-right font-serif text-3xl italic">23:00h</div>
+                        <div class="w-12 h-12 bg-[#7a8464] rounded-full flex items-center justify-center shadow-lg"><span class="text-white text-xl">🕺</span></div>
+                        <div class="md:w-1/3 text-center md:text-left">
+                            <p class="font-serif text-2xl uppercase tracking-widest text-[#7a8464] font-bold">¡Fiesta!</p>
+                            <p class="font-serif text-lg opacity-70 italic">Hasta que el cuerpo aguante</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 px-6 bg-parallax"
                  style="background-image: url('https://images.unsplash.com/photo-1544124499-58ec52ce3042?q=80&w=2072&auto=format&fit=crop');">
             <div class="overlay-crema-viva" style="background-color: rgba(255, 255, 255, 0.85);"></div>
-            <div class="max-w-5xl mx-auto relative z-10 text-center space-y-8 md:space-y-12">
-                <h3 class="font-script text-6xl md:text-7xl text-[#7a8464]">La Ceremonia y Celebración</h3>
-                <div class="space-y-4 font-serif text-[#4a4a4a]">
-                    <p class="text-2xl md:text-3xl italic">18:00 Horas</p>
-                    <div class="leading-loose text-lg md:text-xl">
+            <div class="max-w-5xl mx-auto relative z-10 text-center space-y-12">
+                <h3 class="font-script text-7xl text-[#7a8464]">La Ceremonia y Celebración</h3>
+                <div class="space-y-6 font-serif text-[#4a4a4a]">
+                    <p class="text-3xl italic">18:00 Horas</p>
+                    <div class="leading-loose text-xl">
                         <p class="font-bold uppercase tracking-widest text-sm mb-2">Finca Aal Cachucho</p>
                         <p>Camino de Correcaballos, s/n</p>
                         <p>28750 San Agustín del Guadalix, Madrid</p>
                     </div>
                 </div>
 
-                <div class="map-container rounded-sm">
-                    <iframe 
-                        src="https://maps.google.com/maps?q=Finca%20Aal%20Cachucho%20San%20Agust%C3%ADn%20del%20Guadalix&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="pt-8">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Finca+Aal+Cachucho+Madrid" 
+                       target="_blank" 
+                       class="font-serif text-xs uppercase tracking-[0.2em] border-2 border-[#7a8464] text-[#7a8464] py-4 px-10 hover:bg-[#7a8464] hover:text-white transition bg-white/80 inline-block shadow-md">
+                        Abrir en Google Maps
+                    </a>
                 </div>
-
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Finca+Aal+Cachucho+San+Agustin+del+Guadalix" 
-                   target="_blank" 
-                   class="font-serif text-xs uppercase tracking-[0.2em] border-2 border-[#7a8464] text-[#7a8464] py-4 px-10 hover:bg-[#7a8464] hover:text-white transition bg-white/80 inline-block shadow-md">
-                    Abrir en Google Maps
-                </a>
             </div>
         </section>
 
