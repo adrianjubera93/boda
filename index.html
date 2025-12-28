@@ -8,142 +8,179 @@
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     
     <style>
-        :root { --verde: #7a8464; --crema: #f4f1ea; --texto: #4a4a4a; }
+        :root {
+            --verde-salvia: #7a8464;
+            --crema-papel: #f8f6f1;
+            --texto: #4a4a4a;
+        }
         .font-script { font-family: 'Pinyon Script', cursive; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .font-sans { font-family: 'Montserrat', sans-serif; }
 
-        body { background-color: var(--crema); color: var(--texto); scroll-behavior: smooth; }
+        body { background-color: var(--crema-papel); color: var(--texto); scroll-behavior: smooth; }
 
-        /* --- SOBRE INTERACTIVO --- */
+        /* --- NUEVO SOBRE DE LUJO GIGANTE --- */
         #envelope-wrapper {
             position: fixed; inset: 0; z-index: 100;
-            background-color: #2d2d2d; /* Color de fondo tras el sobre */
+            background-color: #2a2a2a; /* Fondo oscuro para resaltar el sobre */
             display: flex; align-items: center; justify-content: center;
-            transition: transform 1s ease-in-out;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            perspective: 1500px;
+            padding: 20px;
         }
-        .envelope {
-            position: relative; width: 320px; height: 220px;
-            background: var(--verde); border-radius: 4px; cursor: pointer;
-        }
-        /* Solapa del sobre */
-        .flap {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--verde);
-            clip-path: polygon(0 0, 50% 50%, 100% 0);
-            transform-origin: top; transition: transform 0.6s ease;
-            z-index: 3; border-top: 1px solid rgba(255,255,255,0.2);
-        }
-        /* Texto dentro del sobre */
-        .pocket {
-            position: absolute; inset: 0; display: flex; align-items: center;
-            justify-content: center; color: white; text-align: center; z-index: 2;
-        }
-        /* Animación al abrir */
-        .envelope.open .flap { transform: rotateX(180deg); z-index: 1; }
-        #envelope-wrapper.fade-out { transform: translateY(-100%); }
 
-        /* Estilo de imágenes */
-        .img-elegant { filter: sepia(20%) contrast(90%); border-radius: 2px; }
+        .luxury-envelope {
+            position: relative;
+            width: 100%; max-width: 650px; /* Mucho más grande */
+            aspect-ratio: 8 / 5; /* Proporción de sobre elegante */
+            background-color: var(--crema-papel);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            display: flex; align-items: flex-end; justify-content: center;
+            padding-bottom: 40px;
+            border-radius: 4px;
+            overflow: hidden;
+            /* Sutil textura de papel */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2p3c3c3c' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* La solapa verde superior */
+        .envelope-flap {
+            position: absolute; top: 0; left: 0; width: 100%; height: 65%;
+            background-color: var(--verde-salvia);
+            /* Forma de pico más elegante */
+            clip-path: polygon(0 0, 100% 0, 50% 90%);
+            transform-origin: top; transition: transform 0.8s cubic-bezier(0.6, 0.05, 0.2, 1.3);
+            z-index: 10;
+            box-shadow: inset 0 -5px 15px rgba(0,0,0,0.1);
+        }
+        /* El texto frontal */
+        .envelope-text {
+            text-align: center; color: var(--verde-salvia); z-index: 5;
+            /* Efecto dorado sutil */
+            text-shadow: 0 1px 2px rgba(122, 132, 100, 0.2);
+        }
+
+        /* Animaciones */
+        .luxury-envelope.open .envelope-flap { transform: rotateX(170deg); }
+        #envelope-wrapper.slide-up { transform: translateY(-100%); pointer-events: none; }
+
+        .img-elegant { filter: sepia(10%) contrast(95%) brightness(105%); border-radius: 4px; box-shadow: 0 10px 20px rgba(122, 132, 100, 0.15); }
     </style>
 </head>
 <body class="font-sans overflow-x-hidden">
 
     <div id="envelope-wrapper">
-        <div class="envelope" id="main-envelope">
-            <div class="flap"></div>
-            <div class="pocket">
-                <div>
-                    <p class="font-script text-3xl">Para nuestra familia</p>
-                    <p class="font-serif text-xs uppercase tracking-widest mt-2">Haz clic para abrir</p>
-                </div>
+        <div class="luxury-envelope" id="main-envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-text">
+                <p class="font-script text-5xl md:text-7xl mb-2">Paula & Adrián</p>
+                <p class="font-serif uppercase tracking-[0.3em] text-xs md:text-sm">Invitación de Boda<br>Haz clic para abrir</p>
             </div>
         </div>
     </div>
 
-    <main>
-        <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
-            <p class="font-serif uppercase tracking-[0.4em] mb-6 text-sm" style="color: var(--verde);">¡Nos casamos!</p>
-            <h1 class="font-script text-8xl md:text-9xl mb-8" style="color: var(--verde);">Paula & Adrián</h1>
+    <main class="bg-[#faf9f7]"> <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-10 py-20 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('https://www.transparenttextures.com/patterns/flower-trail.png');"></div>
             
-            <div class="mb-6">
-                <p class="font-serif text-2xl uppercase tracking-[0.3em] border-b border-[#7a8464]/30 pb-4 inline-block">
-                    01 . Mayo . 2026
+            <div class="relative z-10">
+                <p class="font-serif uppercase tracking-[0.4em] mb-4 text-sm text-verde-boda" style="color: var(--verde-salvia);">¡Nos casamos!</p>
+                <h1 class="font-script text-[7rem] md:text-[10rem] leading-none mb-6" style="color: var(--verde-salvia);">Paula & Adrián</h1>
+                
+                <div class="inline-flex items-center justify-center space-x-6 border-y border-[#7a8464]/20 py-6 px-10 my-8">
+                    <div>
+                        <p class="font-serif text-3xl uppercase tracking-[0.2em]">01 . Mayo</p>
+                        <p class="font-serif text-xl uppercase tracking-[0.2em] opacity-60">2026</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-12">
+                    <p class="font-serif text-xs uppercase tracking-[0.3em] mb-2 opacity-50">Faltan</p>
+                    <div id="countdown" class="font-serif text-2xl md:text-3xl tracking-[0.2em] text-[#7a8464]">
+                        Cargando...
+                    </div>
+                </div>
+
+                <p class="max-w-xl mx-auto font-serif text-xl italic opacity-70 leading-relaxed">
+                    "Lo mejor de la vida es encontrar a alguien que conoce todos tus defectos, errores y debilidades, y aún así piensa que eres increíble."
                 </p>
             </div>
+        </section>
 
-            <div id="countdown" class="font-serif text-xl tracking-[0.2em] opacity-70">
-                Cargando cuenta atrás...
-            </div>
-
-            <div class="mt-16 max-w-md italic font-serif text-lg opacity-80">
-                "Hay momentos en la vida que son especiales por sí solos, pero compartirlos con vosotros los hace inolvidables."
+        <section class="py-12 px-4">
+            <div class="max-w-4xl mx-auto">
+                <img src="https://images.unsplash.com/photo-1583934344156-4c01458c6612?q=80&w=2069&auto=format&fit=crop" alt="Paula y Adrián" class="img-elegant w-full h-[500px] md:h-[700px] object-cover shadow-2xl">
             </div>
         </section>
 
-        <section class="py-20 px-4 bg-white/30">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Boda 1" class="img-elegant w-full h-80 object-cover">
-                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Boda 2" class="img-elegant w-full h-80 object-cover mt-8">
-                <img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&w=800&q=80" alt="Boda 3" class="img-elegant w-full h-80 object-cover">
-            </div>
-        </section>
-
-        <section class="py-24 px-6 max-w-5xl mx-auto">
-            <h3 class="font-script text-7xl text-center mb-20" style="color: var(--verde);">Dónde y Cuándo</h3>
-            <div class="grid md:grid-cols-2 gap-16">
-                <div class="text-center space-y-6">
-                    <div class="w-20 h-20 mx-auto rounded-full bg-[#7a8464]/10 flex items-center justify-center text-3xl">💍</div>
-                    <h4 class="font-serif text-3xl uppercase tracking-widest">La Ceremonia</h4>
-                    <p class="font-serif text-xl italic">18:00 Horas</p>
-                    <p class="text-sm leading-relaxed opacity-80">
-                        Finca Aal Cachucho<br>
-                        Cam. de Correcaballos, s/n<br>
-                        San Agustín del Guadalix, Madrid
-                    </p>
-                    <a href="https://maps.app.goo.gl/0" target="_blank" class="inline-block mt-4 text-xs font-bold tracking-widest border-b border-black pb-1 hover:text-[#7a8464] hover:border-[#7a8464]">CÓMO LLEGAR</a>
+        <section class="py-24 px-6 max-w-6xl mx-auto relative">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="text-center md:text-right space-y-8">
+                     <h3 class="font-script text-7xl" style="color: var(--verde-salvia);">La Ceremonia</h3>
+                     <p class="font-serif text-2xl italic border-b border-[#7a8464]/20 pb-4 inline-block">18:00 Horas</p>
+                     <div class="font-serif leading-loose text-lg opacity-80">
+                         <p class="font-bold uppercase tracking-widest text-sm mb-2">Finca Aal Cachucho</p>
+                         <p>Cam. de Correcaballos, s/n</p>
+                         <p>San Agustín del Guadalix, Madrid</p>
+                     </div>
+                     <div>
+                         <a href="https://maps.app.goo.gl/0" target="_blank" class="font-serif text-xs uppercase tracking-[0.2em] border-2 border-[#7a8464] text-[#7a8464] py-3 px-8 hover:bg-[#7a8464] hover:text-white transition duration-300">Ver en Mapa</a>
+                     </div>
                 </div>
-                <div class="text-center space-y-6">
-                    <div class="w-20 h-20 mx-auto rounded-full bg-[#7a8464]/10 flex items-center justify-center text-3xl">🥂</div>
-                    <h4 class="font-serif text-3xl uppercase tracking-widest">La Fiesta</h4>
-                    <p class="font-serif text-xl italic">18:30 Horas</p>
-                    <p class="text-sm leading-relaxed opacity-80">
-                        Continuaremos con el cóctel,<br>
-                        el banquete y mucha fiesta<br>
-                        en los jardines de la finca.
-                    </p>
+                
+                <div class="hidden md:flex justify-center items-center h-full opacity-30">
+                    <div class="h-64 w-px bg-[#7a8464]"></div>
                 </div>
+
+                <div class="text-center md:text-left space-y-8">
+                    <h3 class="font-script text-7xl" style="color: var(--verde-salvia);">El Banquete</h3>
+                    <p class="font-serif text-2xl italic border-b border-[#7a8464]/20 pb-4 inline-block">18:30 Horas</p>
+                    <div class="font-serif leading-loose text-lg opacity-80">
+                        <p class="font-bold uppercase tracking-widest text-sm mb-2">A continuación</p>
+                        <p>Cóctel de bienvenida,</p>
+                        <p>cena bajo las estrellas y</p>
+                        <p>fiesta hasta el amanecer.</p>
+                    </div>
+               </div>
             </div>
         </section>
 
-        <section class="py-24 bg-white">
-            <div class="max-w-2xl mx-auto px-6">
-                <h3 class="font-script text-7xl text-center mb-12" style="color: var(--verde);">Confirmación</h3>
-                <div class="rounded-sm overflow-hidden shadow-2xl">
+        <section class="py-24 px-6 bg-[#7a8464]/5">
+            <div class="max-w-3xl mx-auto text-center">
+                <h3 class="font-script text-7xl mb-4" style="color: var(--verde-salvia);">R.S.V.P.</h3>
+                <p class="font-serif uppercase tracking-widest text-sm mb-12 opacity-70">Esperamos contar con vosotros</p>
+                
+                <div class="bg-white p-4 shadow-xl rounded-sm">
                     <iframe src="https://tally.so/embed/PdD7Md?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" width="100%" height="800" frameborder="0"></iframe>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-20 text-center opacity-40 font-serif uppercase tracking-[0.5em] text-xs">
-        Paula & Adrián — 2026
+    <footer class="py-20 text-center opacity-40 font-serif uppercase tracking-[0.4em] text-xs flex flex-col items-center justify-center space-y-4">
+        <span class="font-script text-4xl opacity-100" style="color: var(--verde-salvia);">P & A</span>
+        <span>01 . Mayo . 2026</span>
     </footer>
 
     <script>
-        // LÓGICA DEL SOBRE REALISTA
+        // NUEVA LÓGICA DEL SOBRE DE LUJO
         const envelope = document.getElementById('main-envelope');
         const wrapper = document.getElementById('envelope-wrapper');
 
-        envelope.addEventListener('click', () => {
-            envelope.classList.add('open'); // Primero abre la solapa
-            setTimeout(() => {
-                wrapper.classList.add('fade-out'); // Luego sube el sobre completo
-                document.body.style.overflow = 'auto';
-            }, 800);
-        });
-
+        // Bloquear scroll al inicio
         document.body.style.overflow = 'hidden';
+
+        envelope.addEventListener('click', () => {
+            // 1. Abrir la solapa
+            envelope.classList.add('open');
+            
+            // 2. Esperar a que la solapa se abra y luego deslizar todo hacia arriba
+            setTimeout(() => {
+                wrapper.classList.add('slide-up');
+                // Permitir scroll de nuevo
+                document.body.style.overflow = 'auto';
+            }, 900); // Espera casi un segundo para que se vea la animación de la solapa
+        });
 
         // CUENTA ATRÁS
         const weddingDate = new Date("May 1, 2026 18:00:00").getTime();
@@ -153,7 +190,12 @@
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("countdown").innerHTML = `${days} DÍAS : ${hours} HORAS : ${minutes} MINUTOS`;
+            
+            if (diff > 0) {
+                document.getElementById("countdown").innerHTML = `${days} DÍAS &nbsp; ${hours} HR &nbsp; ${minutes} MIN`;
+            } else {
+                document.getElementById("countdown").innerHTML = "¡ES HOY!";
+            }
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
