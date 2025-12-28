@@ -8,141 +8,153 @@
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     
     <style>
+        :root { --verde: #7a8464; --crema: #f4f1ea; --texto: #4a4a4a; }
         .font-script { font-family: 'Pinyon Script', cursive; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .font-sans { font-family: 'Montserrat', sans-serif; }
-        
-        /* Colores inspirados en tu imagen */
-        :root {
-            --verde: #7a8464;
-            --crema: #f4f1ea;
-            --texto: #4a4a4a;
-        }
 
-        body { background-color: var(--crema); color: var(--texto); }
-        
-        /* Animación del sobre */
-        #invitation-cover {
-            background-color: var(--verde);
-            transition: transform 1.2s ease-in-out, opacity 1s ease;
-        }
-        .opened { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+        body { background-color: var(--crema); color: var(--texto); scroll-behavior: smooth; }
 
-        .btn-verde {
-            background-color: var(--verde);
-            color: white;
-            transition: all 0.3s;
+        /* --- SOBRE INTERACTIVO --- */
+        #envelope-wrapper {
+            position: fixed; inset: 0; z-index: 100;
+            background-color: #2d2d2d; /* Color de fondo tras el sobre */
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 1s ease-in-out;
         }
-        .btn-verde:hover { opacity: 0.9; transform: scale(1.05); }
+        .envelope {
+            position: relative; width: 320px; height: 220px;
+            background: var(--verde); border-radius: 4px; cursor: pointer;
+        }
+        /* Solapa del sobre */
+        .flap {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--verde);
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            transform-origin: top; transition: transform 0.6s ease;
+            z-index: 3; border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        /* Texto dentro del sobre */
+        .pocket {
+            position: absolute; inset: 0; display: flex; align-items: center;
+            justify-content: center; color: white; text-align: center; z-index: 2;
+        }
+        /* Animación al abrir */
+        .envelope.open .flap { transform: rotateX(180deg); z-index: 1; }
+        #envelope-wrapper.fade-out { transform: translateY(-100%); }
+
+        /* Estilo de imágenes */
+        .img-elegant { filter: sepia(20%) contrast(90%); border-radius: 2px; }
     </style>
 </head>
 <body class="font-sans overflow-x-hidden">
 
-    <div id="invitation-cover" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-white cursor-pointer shadow-2xl">
-        <div class="border border-white/40 p-12 text-center rounded-sm mx-4">
-            <h1 class="font-script text-7xl md:text-9xl mb-4">Paula & Adrián</h1>
-            <p class="font-serif uppercase tracking-[0.4em] text-sm italic border-t border-white/40 pt-4 mt-4">Haz clic para abrir</p>
+    <div id="envelope-wrapper">
+        <div class="envelope" id="main-envelope">
+            <div class="flap"></div>
+            <div class="pocket">
+                <div>
+                    <p class="font-script text-3xl">Para nuestra familia</p>
+                    <p class="font-serif text-xs uppercase tracking-widest mt-2">Haz clic para abrir</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <main>
-        <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 py-20">
-            <p class="font-serif uppercase tracking-[0.3em] mb-6 text-sm text-verde-boda" style="color: var(--verde);">¡Nos casamos!</p>
-            <h2 class="font-script text-8xl md:text-9xl mb-8" style="color: var(--verde);">Paula & Adrián</h2>
+        <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
+            <p class="font-serif uppercase tracking-[0.4em] mb-6 text-sm" style="color: var(--verde);">¡Nos casamos!</p>
+            <h1 class="font-script text-8xl md:text-9xl mb-8" style="color: var(--verde);">Paula & Adrián</h1>
             
-            <div id="countdown" class="font-serif text-2xl md:text-3xl tracking-widest border-y border-[#7a8464]/30 py-4 px-8 inline-block">
-                Cargando...
+            <div class="mb-6">
+                <p class="font-serif text-2xl uppercase tracking-[0.3em] border-b border-[#7a8464]/30 pb-4 inline-block">
+                    01 . Mayo . 2026
+                </p>
             </div>
-            
-            <p class="font-serif text-xl mt-8 uppercase tracking-widest">01 . Mayo . 2026</p>
+
+            <div id="countdown" class="font-serif text-xl tracking-[0.2em] opacity-70">
+                Cargando cuenta atrás...
+            </div>
+
+            <div class="mt-16 max-w-md italic font-serif text-lg opacity-80">
+                "Hay momentos en la vida que son especiales por sí solos, pero compartirlos con vosotros los hace inolvidables."
+            </div>
+        </section>
+
+        <section class="py-20 px-4 bg-white/30">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Boda 1" class="img-elegant w-full h-80 object-cover">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Boda 2" class="img-elegant w-full h-80 object-cover mt-8">
+                <img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&w=800&q=80" alt="Boda 3" class="img-elegant w-full h-80 object-cover">
+            </div>
         </section>
 
         <section class="py-24 px-6 max-w-5xl mx-auto">
-            <h3 class="font-script text-6xl text-center mb-16" style="color: var(--verde);">Dónde y Cuándo</h3>
-            <div class="grid md:grid-cols-2 gap-12 text-center">
-                <div class="space-y-4 p-10 bg-white shadow-sm border border-[#7a8464]/10">
-                    <h4 class="font-serif text-2xl uppercase tracking-widest">Ceremonia</h4>
+            <h3 class="font-script text-7xl text-center mb-20" style="color: var(--verde);">Dónde y Cuándo</h3>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="text-center space-y-6">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-[#7a8464]/10 flex items-center justify-center text-3xl">💍</div>
+                    <h4 class="font-serif text-3xl uppercase tracking-widest">La Ceremonia</h4>
                     <p class="font-serif text-xl italic">18:00 Horas</p>
-                    <p class="text-sm leading-relaxed">Finca Aal Cachucho<br>Cam. de Correcaballos, s/n<br>San Agustín del Guadalix, Madrid</p>
-                    <a href="https://maps.google.com/?q=Finca+Aal+Cachucho" target="_blank" class="mt-6 inline-block text-xs font-bold tracking-widest border-b border-black pb-1 hover:text-[#7a8464] hover:border-[#7a8464]">VER MAPA</a>
+                    <p class="text-sm leading-relaxed opacity-80">
+                        Finca Aal Cachucho<br>
+                        Cam. de Correcaballos, s/n<br>
+                        San Agustín del Guadalix, Madrid
+                    </p>
+                    <a href="https://maps.app.goo.gl/0" target="_blank" class="inline-block mt-4 text-xs font-bold tracking-widest border-b border-black pb-1 hover:text-[#7a8464] hover:border-[#7a8464]">CÓMO LLEGAR</a>
                 </div>
-                <div class="space-y-4 p-10 bg-white shadow-sm border border-[#7a8464]/10">
-                    <h4 class="font-serif text-2xl uppercase tracking-widest">Celebración</h4>
+                <div class="text-center space-y-6">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-[#7a8464]/10 flex items-center justify-center text-3xl">🥂</div>
+                    <h4 class="font-serif text-3xl uppercase tracking-widest">La Fiesta</h4>
                     <p class="font-serif text-xl italic">18:30 Horas</p>
-                    <p class="text-sm leading-relaxed">Cóctel, cena y fiesta<br>Todo en el mismo lugar<br>¡Os esperamos!</p>
+                    <p class="text-sm leading-relaxed opacity-80">
+                        Continuaremos con el cóctel,<br>
+                        el banquete y mucha fiesta<br>
+                        en los jardines de la finca.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 bg-white/50">
-            <div class="max-w-xl mx-auto px-6">
-                <h3 class="font-script text-6xl text-center mb-16" style="color: var(--verde);">Nuestra Tarde</h3>
-                <div class="space-y-12 border-l border-[#7a8464]/30 pl-8 ml-4">
-                    <div class="relative">
-                        <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full" style="background-color: var(--verde);"></div>
-                        <h5 class="font-serif text-xl uppercase tracking-widest">18:00 — El "Sí, quiero"</h5>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full" style="background-color: var(--verde);"></div>
-                        <h5 class="font-serif text-xl uppercase tracking-widest">18:30 — Cóctel y Besos</h5>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full" style="background-color: var(--verde);"></div>
-                        <h5 class="font-serif text-xl uppercase tracking-widest">20:30 — Banquete</h5>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full" style="background-color: var(--verde);"></div>
-                        <h5 class="font-serif text-xl uppercase tracking-widest">23:00 — ¡Fiesta!</h5>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-24 px-6 bg-white">
-            <div class="max-w-2xl mx-auto">
-                <div class="text-center mb-12">
-                    <h3 class="font-script text-7xl mb-4" style="color: var(--verde);">Confirmación</h3>
-                    <p class="font-serif uppercase tracking-widest text-xs">Agradecemos vuestra respuesta</p>
-                </div>
-                
-                <div class="rounded-lg overflow-hidden shadow-xl border border-crema">
-                    <iframe src="https://tally.so/embed/PdD7Md?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" width="100%" height="800" frameborder="0" title="Confirmación Boda"></iframe>
+        <section class="py-24 bg-white">
+            <div class="max-w-2xl mx-auto px-6">
+                <h3 class="font-script text-7xl text-center mb-12" style="color: var(--verde);">Confirmación</h3>
+                <div class="rounded-sm overflow-hidden shadow-2xl">
+                    <iframe src="https://tally.so/embed/PdD7Md?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" width="100%" height="800" frameborder="0"></iframe>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 text-center text-xs tracking-[0.5em] uppercase opacity-50 font-serif">
-        P & A — 01 . 05 . 2026
+    <footer class="py-20 text-center opacity-40 font-serif uppercase tracking-[0.5em] text-xs">
+        Paula & Adrián — 2026
     </footer>
 
     <script>
-        // Lógica de apertura del sobre
-        document.getElementById('invitation-cover').addEventListener('click', function() {
-            this.classList.add('opened');
-            document.body.style.overflow = 'auto';
+        // LÓGICA DEL SOBRE REALISTA
+        const envelope = document.getElementById('main-envelope');
+        const wrapper = document.getElementById('envelope-wrapper');
+
+        envelope.addEventListener('click', () => {
+            envelope.classList.add('open'); // Primero abre la solapa
+            setTimeout(() => {
+                wrapper.classList.add('fade-out'); // Luego sube el sobre completo
+                document.body.style.overflow = 'auto';
+            }, 800);
         });
 
         document.body.style.overflow = 'hidden';
 
-        // Cuenta atrás para el 1 de mayo de 2026
+        // CUENTA ATRÁS
         const weddingDate = new Date("May 1, 2026 18:00:00").getTime();
-        
         function updateCountdown() {
             const now = new Date().getTime();
             const diff = weddingDate - now;
-            
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            
-            if (diff > 0) {
-                document.getElementById("countdown").innerHTML = `${days}D : ${hours}H : ${minutes}M`;
-            } else {
-                document.getElementById("countdown").innerHTML = "¡ES HOY!";
-            }
+            document.getElementById("countdown").innerHTML = `${days} DÍAS : ${hours} HORAS : ${minutes} MINUTOS`;
         }
-        
         setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
