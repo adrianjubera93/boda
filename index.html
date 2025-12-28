@@ -19,70 +19,56 @@
 
         body { background-color: var(--crema-papel); color: var(--texto); scroll-behavior: smooth; }
 
-        /* --- NUEVO SOBRE DE LUJO GIGANTE --- */
-        #envelope-wrapper {
-            position: fixed; inset: 0; z-index: 100;
-            background-color: #2a2a2a; /* Fondo oscuro para resaltar el sobre */
-            display: flex; align-items: center; justify-content: center;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-            perspective: 1500px;
-            padding: 20px;
-        }
-
-        .luxury-envelope {
-            position: relative;
-            width: 100%; max-width: 650px; /* Mucho más grande */
-            aspect-ratio: 8 / 5; /* Proporción de sobre elegante */
-            background-color: var(--crema-papel);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-            display: flex; align-items: flex-end; justify-content: center;
-            padding-bottom: 40px;
-            border-radius: 4px;
-            overflow: hidden;
-            /* Sutil textura de papel */
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2p3c3c3c' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-
-        /* La solapa verde superior */
-        .envelope-flap {
-            position: absolute; top: 0; left: 0; width: 100%; height: 65%;
+        /* --- PORTADA ELEGANTE (ESTILO ANTERIOR) --- */
+        #invitation-cover {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
             background-color: var(--verde-salvia);
-            /* Forma de pico más elegante */
-            clip-path: polygon(0 0, 100% 0, 50% 90%);
-            transform-origin: top; transition: transform 0.8s cubic-bezier(0.6, 0.05, 0.2, 1.3);
-            z-index: 10;
-            box-shadow: inset 0 -5px 15px rgba(0,0,0,0.1);
-        }
-        /* El texto frontal */
-        .envelope-text {
-            text-align: center; color: var(--verde-salvia); z-index: 5;
-            /* Efecto dorado sutil */
-            text-shadow: 0 1px 2px rgba(122, 132, 100, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
         }
 
-        /* Animaciones */
-        .luxury-envelope.open .envelope-flap { transform: rotateX(170deg); }
-        #envelope-wrapper.slide-up { transform: translateY(-100%); pointer-events: none; }
+        /* Cuando se hace clic, se desliza hacia arriba */
+        #invitation-cover.opened {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
 
-        .img-elegant { filter: sepia(10%) contrast(95%) brightness(105%); border-radius: 4px; box-shadow: 0 10px 20px rgba(122, 132, 100, 0.15); }
+        .cover-border {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 3rem;
+            text-align: center;
+            border-radius: 2px;
+        }
+
+        .img-elegant { 
+            filter: sepia(10%) contrast(95%) brightness(105%); 
+            border-radius: 4px; 
+            box-shadow: 0 10px 20px rgba(122, 132, 100, 0.15); 
+        }
     </style>
 </head>
 <body class="font-sans overflow-x-hidden">
 
-    <div id="envelope-wrapper">
-        <div class="luxury-envelope" id="main-envelope">
-            <div class="envelope-flap"></div>
-            <div class="envelope-text">
-                <p class="font-script text-5xl md:text-7xl mb-2">Paula & Adrián</p>
-                <p class="font-serif uppercase tracking-[0.3em] text-xs md:text-sm">Invitación de Boda<br>Haz clic para abrir</p>
-            </div>
+    <div id="invitation-cover" onclick="openInvitation()">
+        <div class="cover-border mx-4">
+            <h1 class="font-script text-7xl md:text-9xl mb-6">Paula & Adrián</h1>
+            <div class="h-px w-20 bg-white/40 mx-auto mb-6"></div>
+            <p class="font-serif uppercase tracking-[0.4em] text-sm md:text-base">01 . Mayo . 2026</p>
+            <p class="font-serif italic text-xs mt-8 opacity-70 uppercase tracking-widest">Haz clic para entrar</p>
         </div>
     </div>
 
-    <main class="bg-[#faf9f7]"> <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-10 py-20 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('https://www.transparenttextures.com/patterns/flower-trail.png');"></div>
-            
+    <main class="bg-[#faf9f7]">
+        
+        <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-10 py-20 relative">
             <div class="relative z-10">
                 <p class="font-serif uppercase tracking-[0.4em] mb-4 text-sm text-verde-boda" style="color: var(--verde-salvia);">¡Nos casamos!</p>
                 <h1 class="font-script text-[7rem] md:text-[10rem] leading-none mb-6" style="color: var(--verde-salvia);">Paula & Adrián</h1>
@@ -113,7 +99,7 @@
             </div>
         </section>
 
-        <section class="py-24 px-6 max-w-6xl mx-auto relative">
+        <section class="py-24 px-6 max-w-6xl mx-auto">
             <div class="grid md:grid-cols-2 gap-20 items-center">
                 <div class="text-center md:text-right space-y-8">
                      <h3 class="font-script text-7xl" style="color: var(--verde-salvia);">La Ceremonia</h3>
@@ -124,7 +110,7 @@
                          <p>San Agustín del Guadalix, Madrid</p>
                      </div>
                      <div>
-                         <a href="https://maps.app.goo.gl/0" target="_blank" class="font-serif text-xs uppercase tracking-[0.2em] border-2 border-[#7a8464] text-[#7a8464] py-3 px-8 hover:bg-[#7a8464] hover:text-white transition duration-300">Ver en Mapa</a>
+                         <a href="https://maps.google.com/?q=Finca+Aal+Cachucho" target="_blank" class="font-serif text-xs uppercase tracking-[0.2em] border-2 border-[#7a8464] text-[#7a8464] py-3 px-8 hover:bg-[#7a8464] hover:text-white transition duration-300">Ver en Mapa</a>
                      </div>
                 </div>
                 
@@ -163,24 +149,13 @@
     </footer>
 
     <script>
-        // NUEVA LÓGICA DEL SOBRE DE LUJO
-        const envelope = document.getElementById('main-envelope');
-        const wrapper = document.getElementById('envelope-wrapper');
+        function openInvitation() {
+            document.getElementById('invitation-cover').classList.add('opened');
+            document.body.style.overflow = 'auto';
+        }
 
         // Bloquear scroll al inicio
         document.body.style.overflow = 'hidden';
-
-        envelope.addEventListener('click', () => {
-            // 1. Abrir la solapa
-            envelope.classList.add('open');
-            
-            // 2. Esperar a que la solapa se abra y luego deslizar todo hacia arriba
-            setTimeout(() => {
-                wrapper.classList.add('slide-up');
-                // Permitir scroll de nuevo
-                document.body.style.overflow = 'auto';
-            }, 900); // Espera casi un segundo para que se vea la animación de la solapa
-        });
 
         // CUENTA ATRÁS
         const weddingDate = new Date("May 1, 2026 18:00:00").getTime();
