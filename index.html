@@ -29,7 +29,7 @@
         }
         #invitation-cover.opened { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 
-        /* EFECTO PARALLAX */
+        /* EFECTO PARALLAX OPTIMIZADO */
         .bg-parallax {
             background-attachment: fixed;
             background-position: center;
@@ -38,7 +38,11 @@
             position: relative;
         }
 
-        /* CAPAS DE COLOR TRANSPARENTES */
+        /* Ajuste para móviles para que las imágenes se vean nítidas */
+        @media (max-width: 1024px) {
+            .bg-parallax { background-attachment: scroll; }
+        }
+
         .overlay-viva { position: absolute; inset: 0; background-color: rgba(255, 255, 255, 0.45); }
         .overlay-crema-viva { position: absolute; inset: 0; background-color: rgba(248, 246, 241, 0.55); }
 
@@ -48,7 +52,7 @@
             border: 8px solid white;
         }
 
-        /* CONTENEDOR DEL MAPA */
+        /* CONTENEDOR DEL MAPA ESTABLE */
         .map-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -62,9 +66,9 @@
 <body class="font-sans overflow-x-hidden">
 
     <div id="invitation-cover" onclick="openInvitation()">
-        <div class="text-center border border-white/30 p-12 md:p-20">
-            <h1 class="font-script text-7xl md:text-9xl mb-6">Paula & Adrián</h1>
-            <p class="font-serif uppercase tracking-[0.4em] text-sm md:text-base">01 . Mayo . 2026</p>
+        <div class="text-center border border-white/30 p-8 md:p-20 mx-4">
+            <h1 class="font-script text-6xl md:text-9xl mb-6">Paula & Adrián</h1>
+            <p class="font-serif uppercase tracking-[0.4em] text-xs md:text-base">01 . Mayo . 2026</p>
             <div class="h-px w-16 bg-white/40 mx-auto my-8"></div>
             <p class="font-serif italic text-xs mt-10 opacity-60 uppercase tracking-widest animate-pulse">Haz clic para entrar</p>
         </div>
@@ -74,37 +78,37 @@
         <section class="min-h-screen bg-parallax flex flex-col items-center justify-center text-center px-4" 
                  style="background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop');">
             <div class="overlay-viva"></div>
-            <div class="relative z-10 px-8 py-16 border-2 border-[#7a8464]/30 bg-white/60 backdrop-blur-md">
+            <div class="relative z-10 px-6 py-12 md:px-8 md:py-16 border-2 border-[#7a8464]/30 bg-white/60 backdrop-blur-md">
                 <p class="font-serif uppercase tracking-[0.4em] mb-4 text-sm text-[#7a8464]">¡Nos casamos!</p>
-                <h2 class="font-script text-8xl md:text-[10rem] leading-none mb-8 text-[#7a8464]">Paula & Adrián</h2>
-                <div class="font-serif text-3xl uppercase tracking-[0.2em] border-y border-[#7a8464]/30 py-6 inline-block mb-8">01 . Mayo . 2026</div>
-                <div id="countdown" class="font-serif text-xl tracking-[0.3em] text-[#7a8464] font-bold uppercase">Cargando...</div>
+                <h2 class="font-script text-6xl md:text-[10rem] leading-none mb-8 text-[#7a8464]">Paula & Adrián</h2>
+                <div class="font-serif text-2xl md:text-3xl uppercase tracking-[0.2em] border-y border-[#7a8464]/30 py-6 inline-block mb-8">01 . Mayo . 2026</div>
+                <div id="countdown" class="font-serif text-lg md:text-xl tracking-[0.3em] text-[#7a8464] font-bold uppercase">Cargando...</div>
             </div>
         </section>
 
-        <section class="py-32 px-6 text-center bg-parallax"
+        <section class="py-24 md:py-32 px-6 text-center bg-parallax"
                  style="background-image: url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=1974&auto=format&fit=crop');">
             <div class="overlay-crema-viva"></div>
             <div class="max-w-3xl mx-auto space-y-12 relative z-10">
                 <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80" 
-                     class="w-48 h-48 rounded-full mx-auto object-cover img-elegant" alt="Decoración">
-                <div class="bg-white/40 p-10 backdrop-blur-sm border border-white/20">
-                    <h3 class="font-script text-7xl text-[#7a8464] mb-6">Nuestra Historia</h3>
-                    <p class="font-serif text-2xl italic leading-relaxed opacity-90">
+                     class="w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto object-cover img-elegant" alt="Decoración">
+                <div class="bg-white/40 p-6 md:p-10 backdrop-blur-sm border border-white/20">
+                    <h3 class="font-script text-6xl md:text-7xl text-[#7a8464] mb-6">Nuestra Historia</h3>
+                    <p class="font-serif text-xl md:text-2xl italic leading-relaxed opacity-90">
                         "Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que más queremos los hace inolvidables."
                     </p>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 px-6 bg-parallax"
+        <section class="py-20 md:py-24 px-6 bg-parallax"
                  style="background-image: url('https://images.unsplash.com/photo-1544124499-58ec52ce3042?q=80&w=2072&auto=format&fit=crop');">
             <div class="overlay-crema-viva" style="background-color: rgba(255, 255, 255, 0.85);"></div>
-            <div class="max-w-5xl mx-auto relative z-10 text-center space-y-12">
-                <h3 class="font-script text-7xl text-[#7a8464]">La Ceremonia y Celebración</h3>
+            <div class="max-w-5xl mx-auto relative z-10 text-center space-y-8 md:space-y-12">
+                <h3 class="font-script text-6xl md:text-7xl text-[#7a8464]">La Ceremonia y Celebración</h3>
                 <div class="space-y-4 font-serif text-[#4a4a4a]">
-                    <p class="text-3xl italic">18:00 Horas</p>
-                    <div class="leading-loose text-xl">
+                    <p class="text-2xl md:text-3xl italic">18:00 Horas</p>
+                    <div class="leading-loose text-lg md:text-xl">
                         <p class="font-bold uppercase tracking-widest text-sm mb-2">Finca Aal Cachucho</p>
                         <p>Camino de Correcaballos, s/n</p>
                         <p>28750 San Agustín del Guadalix, Madrid</p>
@@ -113,11 +117,11 @@
 
                 <div class="map-container rounded-sm">
                     <iframe 
-                        src="https://maps.google.com/maps?q=Finca%20Aal%20Cachucho,%20Madrid&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        src="https://maps.google.com/maps?q=Finca%20Aal%20Cachucho%20San%20Agust%C3%ADn%20del%20Guadalix&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                         width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
 
-                <a href="https://maps.google.com/?cid=12723450284652172748&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" 
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Finca+Aal+Cachucho+San+Agustin+del+Guadalix" 
                    target="_blank" 
                    class="font-serif text-xs uppercase tracking-[0.2em] border-2 border-[#7a8464] text-[#7a8464] py-4 px-10 hover:bg-[#7a8464] hover:text-white transition bg-white/80 inline-block shadow-md">
                     Abrir en Google Maps
@@ -125,11 +129,11 @@
             </div>
         </section>
 
-        <section class="py-32 px-6 bg-parallax"
+        <section class="py-24 md:py-32 px-6 bg-parallax"
                  style="background-image: url('https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=2072&auto=format&fit=crop');">
              <div class="overlay-crema-viva" style="background-color: rgba(122, 132, 100, 0.45);"></div>
             <div class="max-w-3xl mx-auto relative z-10 text-center">
-                <h3 class="font-script text-7xl mb-6 text-white drop-shadow-md">R.S.V.P.</h3>
+                <h3 class="font-script text-6xl md:text-7xl mb-6 text-white drop-shadow-md">R.S.V.P.</h3>
                 <p class="font-serif uppercase tracking-widest text-sm mb-12 text-white italic drop-shadow-sm">Por favor, confirmen su asistencia antes del 1 de marzo</p>
                 <div class="bg-white/95 p-4 shadow-2xl rounded-sm backdrop-blur-md">
                     <iframe src="https://tally.so/embed/PdD7Md?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
@@ -139,7 +143,7 @@
         </section>
     </main>
 
-    <footer class="py-24 text-center bg-[#f8f6f1] relative z-10">
+    <footer class="py-20 text-center bg-[#f8f6f1] relative z-10">
         <p class="font-script text-4xl text-[#7a8464] mb-4">P & A</p>
         <p class="font-serif uppercase tracking-[0.5em] text-xs opacity-50">01 . Mayo . 2026 — Madrid</p>
     </footer>
