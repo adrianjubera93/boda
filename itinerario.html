@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerario - Paula & Adrián</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --crema: #f8f6f1; --verde: #7a8464; }
+        body { background-color: var(--crema); color: #4a4a4a; font-family: 'Cormorant Garamond', serif; }
+        .font-script { font-family: 'Pinyon Script', cursive; }
+        nav { padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(248, 246, 241, 0.95); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(122, 132, 100, 0.1); }
+        .split-section { display: grid; grid-template-columns: 1fr; align-items: center; background: white; }
+        @media (min-width: 768px) { .split-section { grid-template-columns: 1fr 1fr; } }
+        .split-image { height: 400px; width: 100%; object-fit: cover; }
+        @media (min-width: 768px) { .split-image { height: 600px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="font-serif uppercase tracking-widest text-[10px] hover:opacity-50 transition">← Inicio</a>
+        <p class="font-serif text-lg tracking-[0.3em]">P&A 01.05.26</p>
+        <div class="w-[50px] md:w-[80px]"></div>
+    </nav>
+
+    <header class="py-24 text-center">
+        <h1 class="font-script text-7xl md:text-9xl text-[#7a8464] mb-4">El Itinerario</h1>
+        <p class="font-serif uppercase tracking-[0.3em] text-xs opacity-60">01 . 05 . 26</p>
+    </header>
+
+    <main class="space-y-0 pb-20">
+        <section class="split-section">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200" class="split-image">
+            <div class="p-12 md:p-24">
+                <span class="text-[#7a8464] text-3xl italic">18:00</span>
+                <h2 class="text-4xl md:text-5xl font-light mt-2 mb-6 uppercase tracking-widest">La Ceremonia</h2>
+                <p class="text-xl opacity-80 italic leading-relaxed">"El momento del 'Sí, quiero' rodeados de naturaleza."</p>
+            </div>
+        </section>
+
+        <section class="split-section">
+            <div class="p-12 md:p-24 order-2 md:order-1 text-right">
+                <span class="text-[#7a8464] text-3xl italic">19:30</span>
+                <h2 class="text-4xl md:text-5xl font-light mt-2 mb-6 uppercase tracking-widest">Cóctel</h2>
+                <p class="text-xl opacity-80 italic leading-relaxed">"Brindis y aperitivos en los jardines."</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200" class="split-image order-1 md:order-2">
+        </section>
+
+        <section class="split-section">
+            <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=1200" class="split-image">
+            <div class="p-12 md:p-24">
+                <span class="text-[#7a8464] text-3xl italic">21:00</span>
+                <h2 class="text-4xl md:text-5xl font-light mt-2 mb-6 uppercase tracking-widest">Banquete</h2>
+                <p class="text-xl opacity-80 italic leading-relaxed">"Una cena bajo las estrellas y mucha magia."</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

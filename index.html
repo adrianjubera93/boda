@@ -8,11 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --verde-salvia: #7a8464;
-            --crema-papel: #f8f6f1;
-            --texto: #4a4a4a;
-        }
+        :root { --verde-salvia: #7a8464; --crema-papel: #f8f6f1; --texto: #4a4a4a; }
         .font-script { font-family: 'Pinyon Script', cursive; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .font-sans { font-family: 'Montserrat', sans-serif; }
@@ -29,7 +25,7 @@
         }
         #invitation-cover.opened { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 
-        /* NAVEGACIÓN CORREGIDA PARA MÓVIL */
+        /* NAVEGACIÓN CENTRADA */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 50;
             padding: 1rem; display: flex; justify-content: space-between; align-items: center;
@@ -38,137 +34,110 @@
             opacity: 0; transition: opacity 1s ease 1s;
         }
         .opened-nav { opacity: 1; }
+        @media (min-width: 768px) { nav { padding: 1.5rem 3rem; } }
 
-        @media (min-width: 768px) {
-            nav { padding: 1.5rem 3rem; }
+        /* DISEÑO EDITORIAL */
+        .split-section { display: grid; grid-template-columns: 1fr; align-items: center; background: white; }
+        @media (min-width: 768px) { .split-section { grid-template-columns: 1fr 1fr; } }
+        .split-image { height: 450px; width: 100%; object-fit: cover; }
+        @media (min-width: 768px) { .split-image { height: 650px; } }
+
+        .btn-link { 
+            text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem;
+            border-bottom: 1px solid var(--texto); padding-bottom: 5px; transition: 0.3s;
         }
-
-        /* HERO SECTION */
-        .hero-section {
-            height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
-        }
-
-        .image-container { position: relative; overflow: hidden; height: 500px; }
-        @media (min-width: 768px) { .image-container { height: 650px; } }
-        .image-container img { width: 100%; height: 100%; object-fit: cover; }
-
-        .btn-verde {
-            background-color: var(--verde-salvia); color: white;
-            padding: 14px 30px; border-radius: 2px;
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
-            display: inline-block; transition: all 0.3s ease;
-        }
-        .btn-verde:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-link:hover { color: var(--verde-salvia); border-color: var(--verde-salvia); }
     </style>
+
+    <script>
+        // TRUCO: Ocultar el sobre inmediatamente si ya entró antes
+        if (localStorage.getItem('bodaAbierta') === 'true') {
+            document.write('<style>#invitation-cover { display: none !important; }</style>');
+        }
+    </script>
 </head>
 <body class="font-sans overflow-x-hidden">
 
     <div id="invitation-cover" onclick="openInvitation()">
         <div class="text-center border border-white/20 p-12 md:p-24 mx-4">
-            <h1 class="font-script text-7xl md:text-9xl mb-6">Paula & Adrián</h1>
-            <p class="font-serif uppercase tracking-[0.4em] text-xs md:text-sm">01 . Mayo . 2026</p>
+            <h1 class="font-script text-7xl md:text-9xl text-white mb-6">Paula & Adrián</h1>
+            <p class="font-serif uppercase tracking-[0.4em] text-xs md:text-sm text-white">01 . Mayo . 2026</p>
             <div class="h-px w-12 bg-white/30 mx-auto my-8"></div>
-            <p class="font-serif italic text-[10px] opacity-60 uppercase tracking-widest animate-pulse">Haz clic para entrar</p>
+            <p class="font-serif italic text-[10px] opacity-60 uppercase tracking-widest animate-pulse text-white">Haz clic para entrar</p>
         </div>
     </div>
 
     <nav id="main-nav">
-        <div class="hidden md:flex gap-6 font-serif uppercase tracking-widest text-[10px] flex-1">
-            <a href="historia.html" class="hover:opacity-60 transition">Nuestra historia</a>
-            <a href="#itinerario" class="hover:opacity-60 transition">Itinerario</a>
+        <div class="hidden md:flex gap-8 font-serif uppercase tracking-widest text-[10px] flex-1">
+            <a href="historia.html" target="_blank" class="hover:opacity-60 transition">Nuestra historia</a>
+            <a href="itinerario.html" target="_blank" class="hover:opacity-60 transition">Itinerario</a>
         </div>
-
         <div class="text-center flex-1">
-            <p class="font-serif text-sm md:text-lg tracking-[0.2em] md:tracking-[0.3em] whitespace-nowrap">P&A 01.05.26</p>
+            <p class="font-serif text-sm md:text-lg tracking-[0.2em] md:tracking-[0.3em]">P&A 01.05.26</p>
         </div>
-
         <div class="flex justify-end flex-1">
-            <a href="https://tally.so/r/PdD7Md" target="_blank" 
-               class="border border-black px-3 py-2 md:px-6 md:py-2 uppercase text-[9px] md:text-[10px] tracking-widest hover:bg-black hover:text-white transition whitespace-nowrap">
-                Confirmar
-            </a>
+            <a href="https://tally.so/r/PdD7Md" target="_blank" class="border border-black px-4 py-2 uppercase text-[9px] tracking-widest hover:bg-black hover:text-white transition">Confirmar</a>
         </div>
     </nav>
 
     <main>
-        <section class="hero-section px-4">
+        <section class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000');">
             <div>
-                <h2 class="font-script text-7xl md:text-[11rem] mb-4">Paula y Adrián</h2>
-                <div id="countdown" class="font-serif text-lg md:text-2xl tracking-[0.4em] border-t border-white/30 pt-4 inline-block">Cargando...</div>
+                <h2 class="font-script text-7xl md:text-[11rem] text-white mb-4 leading-none">Paula y Adrián</h2>
+                <div id="countdown" class="font-serif text-white text-base md:text-xl tracking-[0.3em] border-t border-white/30 pt-4 inline-block">Cargando...</div>
             </div>
         </section>
 
-        <section id="itinerario" class="grid grid-cols-1 md:grid-cols-2 items-center bg-white">
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200" alt="Ceremonia">
-            </div>
+        <section class="split-section">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200" class="split-image">
             <div class="p-12 md:p-24 text-center md:text-left">
-                <h3 class="font-serif text-5xl mb-6">Ceremonia</h3>
+                <h3 class="font-serif text-5xl mb-6">Ubicación</h3>
                 <p class="font-serif text-2xl italic mb-4 text-[#7a8464]">18:00 Horas</p>
-                <div class="font-serif text-lg opacity-80 mb-8 leading-relaxed">
-                    <p class="font-bold uppercase text-xs tracking-widest mb-2">Finca Aal Cachucho</p>
+                <div class="font-serif text-sm opacity-80 mb-10 leading-relaxed">
+                    <p class="font-bold uppercase tracking-widest mb-2">Finca Aal Cachucho</p>
                     <p>Camino de Correcaballos, s/n</p>
                     <p>San Agustín del Guadalix, Madrid</p>
                 </div>
-                <a href="https://maps.app.goo.gl/vuestra-ubicacion" target="_blank" class="font-serif border-b border-black text-xs tracking-widest uppercase pb-1">Ver en Google Maps</a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Finca+Aal+Cachucho" target="_blank" class="btn-link">Cómo llegar (Ruta)</a>
             </div>
         </section>
 
-        <section class="grid grid-cols-1 md:grid-cols-2 items-center bg-white">
+        <section class="split-section">
             <div class="p-12 md:p-24 text-center md:text-left order-2 md:order-1">
-                <h3 class="font-serif text-5xl mb-6">Recepción</h3>
-                <p class="font-serif text-2xl italic mb-4 text-[#7a8464]">19:30 — 04:00</p>
-                <div class="font-serif text-lg opacity-80 mb-8 leading-relaxed">
-                    <p>Cóctel, Cena y Fiesta</p>
-                    <p>Todo el evento tendrá lugar en la finca.</p>
-                </div>
-                <a href="https://tally.so/r/PdD7Md" target="_blank" class="font-serif border-b border-black text-xs tracking-widest uppercase pb-1">Confirmar asistencia</a>
+                <h3 class="font-serif text-5xl mb-6">El Itinerario</h3>
+                <p class="font-serif text-2xl italic mb-4 text-[#7a8464]">Cronograma del día</p>
+                <p class="font-serif opacity-70 mb-10 leading-relaxed italic">"Cada detalle ha sido pensado para compartir este día único con vosotros."</p>
+                <a href="itinerario.html" target="_blank" class="btn-link">Ver cronograma completo</a>
             </div>
-            <div class="image-container order-1 md:order-2">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200" alt="Banquete">
-            </div>
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200" class="split-image order-1 md:order-2">
         </section>
 
-        <section class="py-32 text-center bg-[#f8f6f1]">
+        <section class="py-32 text-center">
             <h3 class="font-serif text-4xl mb-12">Nuestra aventura</h3>
-            <a href="historia.html" class="btn-verde px-12">Leer nuestra historia</a>
+            <a href="historia.html" target="_blank" class="bg-[#7a8464] text-white px-12 py-4 uppercase text-[10px] tracking-widest hover:opacity-90 transition inline-block">Leer nuestra historia</a>
         </section>
 
-        <section class="relative h-[80vh] flex items-center justify-center text-center text-white">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=2000" class="w-full h-full object-cover">
+        <section class="relative h-[60vh] flex items-center justify-center text-center text-white">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=2000');">
                 <div class="absolute inset-0 bg-black/40"></div>
             </div>
             <div class="relative z-10 px-4">
-                <p class="font-serif uppercase tracking-[0.4em] text-xs mb-4">Save the date</p>
-                <h3 class="font-serif text-5xl md:text-7xl mb-12 italic">¡Nos vemos allí!</h3>
-                <a href="https://tally.so/r/PdD7Md" target="_blank" class="bg-white text-black px-10 py-4 uppercase text-[10px] tracking-widest font-bold hover:bg-black hover:text-white transition shadow-2xl">
-                    Confirmar mi sitio
-                </a>
+                <h3 class="font-serif text-5xl italic mb-8">¡Te esperamos!</h3>
+                <a href="https://tally.so/r/PdD7Md" target="_blank" class="bg-white text-black px-12 py-4 uppercase text-[10px] tracking-widest font-bold shadow-2xl">Confirmar asistencia</a>
             </div>
         </section>
     </main>
 
-    <footer class="py-16 bg-white border-t border-gray-100 text-[10px] uppercase tracking-[0.2em] opacity-40 text-center">
-        <p>Paula & Adrián — 01 . 05 . 26 — Madrid</p>
-    </footer>
-
     <script>
-        // Función para abrir
         function openInvitation() {
             document.getElementById('invitation-cover').classList.add('opened');
             document.getElementById('main-nav').classList.add('opened-nav');
             document.body.style.overflow = 'auto';
-            sessionStorage.setItem('invitacionAbierta', 'true');
+            localStorage.setItem('bodaAbierta', 'true');
         }
 
-        // Lógica de memoria para evitar repetir la portada
         window.onload = function() {
-            if (sessionStorage.getItem('invitacionAbierta') === 'true') {
-                document.getElementById('invitation-cover').style.display = 'none';
+            if (localStorage.getItem('bodaAbierta') === 'true') {
                 document.getElementById('main-nav').classList.add('opened-nav');
                 document.body.style.overflow = 'auto';
             } else {
@@ -176,14 +145,15 @@
             }
         };
 
-        // Contador de días
         const weddingDate = new Date("May 1, 2026 18:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = weddingDate - now;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById("countdown").innerHTML = days + " DÍAS  " + hours + " H";
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = `${d}D : ${h}H : ${m}M : ${s}S`;
         }, 1000);
     </script>
 </body>
