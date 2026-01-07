@@ -19,9 +19,9 @@
 
         body { background-color: var(--crema-papel); color: var(--texto); scroll-behavior: smooth; }
 
-        /* PORTADA */
+        /* PORTADA DE ENTRADA */
         #invitation-cover {
-            position: fixed; inset: 0; z-index: 100;
+            position: fixed; inset: 0; z-index: 1000;
             background-color: var(--verde-salvia);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             color: white; cursor: pointer;
@@ -29,173 +29,152 @@
         }
         #invitation-cover.opened { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 
-        /* EFECTO PARALLAX */
-        .bg-parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: relative;
+        /* NAVEGACIÓN ESTILO S&A */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 50;
+            padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(248, 246, 241, 0.95); backdrop-blur: md;
+            border-bottom: 1px solid rgba(122, 132, 100, 0.1);
+            opacity: 0; transition: opacity 1s ease 1s;
+        }
+        .opened-nav { opacity: 1; }
+
+        /* HERO SECTION */
+        .hero-section {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
         }
 
-        @media (max-width: 1024px) {
-            .bg-parallax { background-attachment: scroll; }
+        .btn-verde {
+            background-color: var(--verde-salvia); color: white;
+            padding: 14px 30px; border-radius: 2px;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+            display: inline-block; transition: all 0.3s ease;
         }
+        .btn-verde:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        .overlay-viva { position: absolute; inset: 0; background-color: rgba(255, 255, 255, 0.45); }
-        .overlay-crema-viva { position: absolute; inset: 0; background-color: rgba(248, 246, 241, 0.55); }
-
-        .img-elegant { 
-            filter: sepia(5%) contrast(95%); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border: 8px solid white;
-        }
+        .image-container { position: relative; overflow: hidden; height: 600px; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
 <body class="font-sans overflow-x-hidden">
 
     <div id="invitation-cover" onclick="openInvitation()">
-        <div class="text-center border border-white/30 p-8 md:p-20 mx-4">
-            <h1 class="font-script text-6xl md:text-9xl mb-6">Paula & Adrián</h1>
-            <p class="font-serif uppercase tracking-[0.4em] text-xs md:text-base">01 . Mayo . 2026</p>
-            <div class="h-px w-16 bg-white/40 mx-auto my-8"></div>
-            <p class="font-serif italic text-xs mt-10 opacity-60 uppercase tracking-widest animate-pulse">Haz clic para entrar</p>
+        <div class="text-center border border-white/20 p-12 md:p-24 mx-4">
+            <h1 class="font-script text-7xl md:text-9xl mb-6">Paula & Adrián</h1>
+            <p class="font-serif uppercase tracking-[0.4em] text-xs md:text-sm">01 . Mayo . 2026</p>
+            <div class="h-px w-12 bg-white/30 mx-auto my-8"></div>
+            <p class="font-serif italic text-[10px] opacity-60 uppercase tracking-widest animate-pulse">Haz clic para entrar</p>
         </div>
     </div>
 
+    <nav id="main-nav">
+        <div class="flex gap-6 font-serif uppercase tracking-widest text-[10px]">
+            <a href="historia.html" class="hover:opacity-60 transition">Nuestra historia</a>
+            <a href="#itinerario" class="hover:opacity-60 transition">Itinerario</a>
+        </div>
+        <div class="text-center">
+            <p class="font-serif text-lg tracking-[0.3em]">P&A 01.05.26</p>
+        </div>
+        <div>
+            <a href="https://tally.so/r/PdD7Md" target="_blank" class="border border-black px-6 py-2 uppercase text-[10px] tracking-widest hover:bg-black hover:text-white transition">
+                Confirmar asistencia
+            </a>
+        </div>
+    </nav>
+
     <main>
-        <section class="min-h-screen bg-parallax flex flex-col items-center justify-center text-center px-4" 
-                 style="background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop');">
-            <div class="overlay-viva"></div>
-            <div class="relative z-10 px-6 py-12 md:px-8 md:py-16 border-2 border-[#7a8464]/30 bg-white/60 backdrop-blur-md">
-                <p class="font-serif uppercase tracking-[0.4em] mb-4 text-sm text-[#7a8464]">¡Nos casamos!</p>
-                <h2 class="font-script text-6xl md:text-[10rem] leading-none mb-8 text-[#7a8464]">Paula & Adrián</h2>
-                <div class="font-serif text-2xl md:text-3xl uppercase tracking-[0.2em] border-y border-[#7a8464]/30 py-6 inline-block mb-8">01 . Mayo . 2026</div>
-                <div id="countdown" class="font-serif text-lg md:text-xl tracking-[0.3em] text-[#7a8464] font-bold uppercase">Cargando...</div>
+        <section class="hero-section">
+            <div>
+                <h2 class="font-script text-8xl md:text-[11rem] mb-4">Paula y Adrián</h2>
+                <div id="countdown" class="font-serif text-xl md:text-2xl tracking-[0.4em]">Cargando...</div>
             </div>
         </section>
 
-        <section class="py-24 md:py-32 px-6 text-center bg-parallax"
-                 style="background-image: url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=1974&auto=format&fit=crop');">
-            <div class="overlay-crema-viva"></div>
-            <div class="max-w-3xl mx-auto space-y-12 relative z-10">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80" 
-                     class="w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto object-cover img-elegant" alt="Decoración">
-                <div class="bg-white/40 p-6 md:p-10 backdrop-blur-sm border border-white/20">
-                    <h3 class="font-script text-6xl md:text-7xl text-[#7a8464] mb-6">Nuestra Historia</h3>
-                    <p class="font-serif text-xl md:text-2xl italic leading-relaxed opacity-90">
-                        "Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que más queremos los hace inolvidables."
-                    </p>
+        <section id="itinerario" class="grid grid-cols-1 md:grid-cols-2 items-center bg-white">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200" alt="Ceremonia">
+            </div>
+            <div class="p-12 md:p-24 text-center md:text-left">
+                <h3 class="font-serif text-5xl mb-6">Ceremonia</h3>
+                <p class="font-serif text-2xl italic mb-4 text-[#7a8464]">18:00</p>
+                <div class="font-serif text-lg opacity-80 mb-8 leading-relaxed">
+                    <p class="font-bold">Finca Aal Cachucho</p>
+                    <p>Camino de Correcaballos, s/n</p>
+                    <p>San Agustín del Guadalix, Madrid</p>
                 </div>
+                <a href="https://maps.app.goo.gl/vuestra-ubicacion" target="_blank" class="font-serif border-b border-black text-sm tracking-widest uppercase">Ver mapa</a>
             </div>
         </section>
 
-        <section class="py-24 md:py-32 px-6 text-center bg-parallax"
-                 style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop');">
-            <div class="overlay-crema-viva" style="background-color: rgba(248, 246, 241, 0.75);"></div>
-            <div class="max-w-4xl mx-auto relative z-10">
-                <h3 class="font-script text-7xl text-[#7a8464] mb-16">Itinerario</h3>
-                
-                <div class="space-y-16">
-                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                        <div class="md:w-1/3 text-center md:text-right font-serif text-3xl italic">18:00h</div>
-                        <div class="w-12 h-12 bg-[#7a8464] rounded-full flex items-center justify-center shadow-lg"><span class="text-white text-xl">💍</span></div>
-                        <div class="md:w-1/3 text-center md:text-left">
-                            <p class="font-serif text-2xl uppercase tracking-widest text-[#7a8464] font-bold">Ceremonia</p>
-                            <p class="font-serif text-lg opacity-70 italic">Sí, quiero</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                        <div class="md:w-1/3 text-center md:text-right font-serif text-3xl italic">19:00h</div>
-                        <div class="w-12 h-12 bg-[#7a8464] rounded-full flex items-center justify-center shadow-lg"><span class="text-white text-xl">🥂</span></div>
-                        <div class="md:w-1/3 text-center md:text-left">
-                            <p class="font-serif text-2xl uppercase tracking-widest text-[#7a8464] font-bold">Cóctel</p>
-                            <p class="font-serif text-lg opacity-70 italic">Brindis y aperitivos</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                        <div class="md:w-1/3 text-center md:text-right font-serif text-3xl italic">21:00h</div>
-                        <div class="w-12 h-12 bg-[#7a8464] rounded-full flex items-center justify-center shadow-lg"><span class="text-white text-xl">🍽️</span></div>
-                        <div class="md:w-1/3 text-center md:text-left">
-                            <p class="font-serif text-2xl uppercase tracking-widest text-[#7a8464] font-bold">Banquete</p>
-                            <p class="font-serif text-lg opacity-70 italic">Cena bajo las estrellas</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                        <div class="md:w-1/3 text-center md:text-right font-serif text-3xl italic">23:00h</div>
-                        <div class="w-12 h-12 bg-[#7a8464] rounded-full flex items-center justify-center shadow-lg"><span class="text-white text-xl">🕺</span></div>
-                        <div class="md:w-1/3 text-center md:text-left">
-                            <p class="font-serif text-2xl uppercase tracking-widest text-[#7a8464] font-bold">¡Fiesta!</p>
-                            <p class="font-serif text-lg opacity-70 italic">Hasta que el cuerpo aguante</p>
-                        </div>
-                    </div>
+        <section class="grid grid-cols-1 md:grid-cols-2 items-center bg-white">
+            <div class="p-12 md:p-24 text-center md:text-left order-2 md:order-1">
+                <h3 class="font-serif text-5xl mb-6">Celebración</h3>
+                <p class="font-serif text-2xl italic mb-4 text-[#7a8464]">19:30 — 04:00</p>
+                <div class="font-serif text-lg opacity-80 mb-8 leading-relaxed">
+                    <p>Cóctel, Cena y Fiesta</p>
+                    <p>En la misma ubicación</p>
                 </div>
+                <a href="https://tally.so/r/PdD7Md" target="_blank" class="font-serif border-b border-black text-sm tracking-widest uppercase">Confirmar mi sitio</a>
+            </div>
+            <div class="image-container order-1 md:order-2">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200" alt="Banquete">
             </div>
         </section>
 
-        <section class="py-24 px-6 bg-parallax"
-                 style="background-image: url('https://images.unsplash.com/photo-1544124499-58ec52ce3042?q=80&w=2072&auto=format&fit=crop');">
-            <div class="overlay-crema-viva" style="background-color: rgba(255, 255, 255, 0.85);"></div>
-            <div class="max-w-5xl mx-auto relative z-10 text-center space-y-12">
-                <h3 class="font-script text-7xl text-[#7a8464]">La Ceremonia y Celebración</h3>
-                <div class="space-y-6 font-serif text-[#4a4a4a]">
-                    <p class="text-3xl italic">18:00 Horas</p>
-                    <div class="leading-loose text-xl">
-                        <p class="font-bold uppercase tracking-widest text-sm mb-2">Finca Aal Cachucho</p>
-                        <p>Camino de Correcaballos, s/n</p>
-                        <p>28750 San Agustín del Guadalix, Madrid</p>
-                    </div>
-                </div>
-
-                <div class="pt-8">
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=Finca+Aal+Cachucho+Madrid" 
-                       target="_blank" 
-                       class="font-serif text-xs uppercase tracking-[0.2em] border-2 border-[#7a8464] text-[#7a8464] py-4 px-10 hover:bg-[#7a8464] hover:text-white transition bg-white/80 inline-block shadow-md">
-                        Abrir en Google Maps
-                    </a>
-                </div>
-            </div>
+        <section class="py-32 text-center bg-[#f8f6f1]">
+            <h3 class="font-serif text-4xl mb-12">Nuestra aventura</h3>
+            <a href="historia.html" class="btn-verde px-12">Leer nuestra historia</a>
         </section>
 
-        <section class="py-24 md:py-32 px-6 bg-parallax"
-                 style="background-image: url('https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=2072&auto=format&fit=crop');">
-             <div class="overlay-crema-viva" style="background-color: rgba(122, 132, 100, 0.45);"></div>
-            <div class="max-w-3xl mx-auto relative z-10 text-center">
-                <h3 class="font-script text-6xl md:text-7xl mb-6 text-white drop-shadow-md">R.S.V.P.</h3>
-                <p class="font-serif uppercase tracking-widest text-sm mb-12 text-white italic drop-shadow-sm">Por favor, confirmen su asistencia antes del 1 de marzo</p>
-                <div class="bg-white/95 p-4 shadow-2xl rounded-sm backdrop-blur-md">
-                    <iframe src="https://tally.so/embed/PdD7Md?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                            width="100%" height="800" frameborder="0"></iframe>
-                </div>
+        <section class="relative h-[80vh] flex items-center justify-center text-center text-white">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=2000" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div>
+            </div>
+            <div class="relative z-10 px-4">
+                <p class="font-serif uppercase tracking-[0.4em] text-sm mb-4">Confirmación</p>
+                <h3 class="font-serif text-5xl md:text-7xl mb-12 italic">¿Contamos contigo?</h3>
+                <a href="https://tally.so/r/PdD7Md" target="_blank" class="bg-white text-black px-12 py-4 uppercase text-xs tracking-widest font-bold hover:bg-black hover:text-white transition">
+                    Rellenar formulario
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="py-20 text-center bg-[#f8f6f1] relative z-10">
-        <p class="font-script text-4xl text-[#7a8464] mb-4">P & A</p>
-        <p class="font-serif uppercase tracking-[0.5em] text-xs opacity-50">01 . Mayo . 2026 — Madrid</p>
+    <footer class="py-16 bg-white border-t border-gray-100 text-[10px] uppercase tracking-[0.2em] opacity-60 text-center">
+        <p>P & A — 2026 — MADRID</p>
     </footer>
 
     <script>
         function openInvitation() {
             document.getElementById('invitation-cover').classList.add('opened');
+            document.getElementById('main-nav').classList.add('opened-nav');
             document.body.style.overflow = 'auto';
+            sessionStorage.setItem('abierta', 'true');
         }
-        document.body.style.overflow = 'hidden';
 
+        window.onload = function() {
+            if (sessionStorage.getItem('abierta') === 'true') {
+                document.getElementById('invitation-cover').style.display = 'none';
+                document.getElementById('main-nav').classList.add('opened-nav');
+                document.body.style.overflow = 'auto';
+            } else {
+                document.body.style.overflow = 'hidden';
+            }
+        };
+
+        // Contador
         const weddingDate = new Date("May 1, 2026 18:00:00").getTime();
-        function updateCountdown() {
+        setInterval(() => {
             const now = new Date().getTime();
             const diff = weddingDate - now;
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            if (diff > 0) {
-                document.getElementById("countdown").innerHTML = `${days} DÍAS   ${hours} HR   ${minutes} MIN`;
-            }
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+            document.getElementById("countdown").innerHTML = days + " DÍAS  " + hours + " HORAS";
+        }, 1000);
     </script>
 </body>
 </html>

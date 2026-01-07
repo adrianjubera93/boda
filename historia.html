@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia - Paula & Adrián</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --verde: #7a8464; --crema: #f8f6f1; }
+        body { background-color: var(--crema); color: #4a4a4a; font-family: 'Cormorant Garamond', serif; }
+        .font-script { font-family: 'Pinyon Script', cursive; }
+        nav { 
+            padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(248, 246, 241, 0.95); position: sticky; top: 0; z-index: 50;
+            border-bottom: 1px solid rgba(122, 132, 100, 0.1);
+        }
+        .carousel-item { flex: 0 0 80%; height: 450px; }
+        @media (min-width: 768px) { .carousel-item { flex: 0 0 40%; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="flex gap-6 uppercase tracking-widest text-[10px]">
+            <a href="index.html" class="hover:opacity-60 transition">Inicio</a>
+        </div>
+        <p class="text-lg tracking-[0.3em]">P&A 01.05.26</p>
+        <a href="https://tally.so/r/PdD7Md" target="_blank" class="border border-black px-6 py-2 uppercase text-[10px] tracking-widest">Confirmar</a>
+    </nav>
+
+    <main>
+        <section class="h-[60vh]"><img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=2000" class="w-full h-full object-cover"></section>
+
+        <section class="max-w-5xl mx-auto py-24 px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            <div>
+                <p class="text-4xl md:text-5xl italic leading-tight mb-4">"No fue solo suerte, fue el momento exacto."</p>
+                <p class="uppercase tracking-widest text-xs opacity-60">— Adrián</p>
+            </div>
+            <div class="md:mt-40">
+                <p class="text-4xl md:text-5xl italic leading-tight mb-4">"Supe que era él desde que nos reímos por primera vez."</p>
+                <p class="uppercase tracking-widest text-xs opacity-60">— Paula</p>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto py-24 px-6 grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="space-y-8">
+                <h2 class="text-6xl font-light">Nuestra Historia</h2>
+                <div class="w-16 h-px bg-black/20"></div>
+                <div class="text-xl leading-relaxed italic opacity-90 space-y-6">
+                    <p>Paula y Adrián se conocieron un viernes cualquiera en Madrid. Lo que empezó como una charla casual se convirtió en una cena de tres horas, y esa cena en la decisión más importante de nuestras vidas.</p>
+                    <p>Tras viajes, mudanzas y mil risas, decidimos que Aal Cachucho sería el escenario de nuestro "sí, quiero".</p>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&w=1200" class="h-[600px] w-full object-cover shadow-xl">
+        </section>
+
+        <section class="py-32 text-center">
+            <h3 class="font-script text-7xl md:text-9xl text-[#7a8464]">El resto está por escribir</h3>
+        </section>
+
+        <section class="py-24 px-6 overflow-hidden">
+            <div class="flex gap-6 overflow-x-auto pb-10">
+                <div class="carousel-item shrink-0 bg-gray-200"><img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=800" class="w-full h-full object-cover"></div>
+                <div class="carousel-item shrink-0 bg-gray-200"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800" class="w-full h-full object-cover"></div>
+                <div class="carousel-item shrink-0 bg-gray-200"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800" class="w-full h-full object-cover"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-16 text-center opacity-40 uppercase text-[10px] tracking-widest">P&A — 2026</footer>
+
+</body>
+</html>
