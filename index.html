@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda Paula & Adrián</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root { --verde-salvia: #7a8464; --crema-papel: #f8f6f1; --texto: #4a4a4a; }
-        .font-script { font-family: 'Pinyon Script', cursive; }
+        .font-script { font-family: 'Great Vibes', cursive; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .font-sans { font-family: 'Montserrat', sans-serif; }
 
-        body { background-color: var(--crema-papel); color: var(--texto); scroll-behavior: smooth; }
+        body { background-color: var(--crema-papel); color: var(--texto); font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
 
         /* PORTADA DE ENTRADA */
         #invitation-cover {
@@ -22,14 +22,21 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             color: white; cursor: pointer;
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
+            opacity: 1;
+            visibility: visible;
         }
-        #invitation-cover.opened { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+        #invitation-cover.opened { 
+            transform: translateY(-100%); 
+            opacity: 0; 
+            pointer-events: none;
+            visibility: hidden;
+        }
 
         /* NAVEGACIÓN CENTRADA */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 50;
             padding: 1rem; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(248, 246, 241, 0.95); backdrop-blur: md;
+            background: rgba(248, 246, 241, 0.95); backdrop-filter: blur(8px);
             border-bottom: 1px solid rgba(122, 132, 100, 0.1);
             opacity: 0; transition: opacity 1s ease 1s;
         }
@@ -44,19 +51,14 @@
 
         .btn-link { 
             text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem;
-            border-bottom: 1px solid var(--texto); padding-bottom: 5px; transition: 0.3s;
+            border-bottom: 1px solid var(--verde-salvia); padding-bottom: 5px; transition: 0.3s;
+            color: var(--verde-salvia); font-family: 'Montserrat', sans-serif;
         }
-        .btn-link:hover { color: var(--verde-salvia); border-color: var(--verde-salvia); }
+        .btn-link:hover { color: var(--verde-salvia); border-color: var(--verde-salvia); opacity: 0.7; }
     </style>
 
-    <script>
-        // TRUCO: Ocultar el sobre inmediatamente si ya entró antes
-        if (localStorage.getItem('bodaAbierta') === 'true') {
-            document.write('<style>#invitation-cover { display: none !important; }</style>');
-        }
-    </script>
 </head>
-<body class="font-sans overflow-x-hidden">
+<body class="overflow-x-hidden">
 
     <div id="invitation-cover" onclick="openInvitation()">
         <div class="text-center border border-white/20 p-12 md:p-24 mx-4">
@@ -68,15 +70,15 @@
     </div>
 
     <nav id="main-nav">
-        <div class="hidden md:flex gap-8 font-serif uppercase tracking-widest text-[10px] flex-1">
-            <a href="historia.html" target="_blank" class="hover:opacity-60 transition">Nuestra historia</a>
-            <a href="itinerario.html" target="_blank" class="hover:opacity-60 transition">Itinerario</a>
+        <div class="hidden md:flex gap-8 font-sans uppercase tracking-widest text-[10px] flex-1">
+            <a href="historia.html" class="text-[#7a8464] hover:opacity-60 transition">Nuestra historia</a>
+            <a href="itinerario.html" class="text-[#7a8464] hover:opacity-60 transition">Itinerario</a>
         </div>
         <div class="text-center flex-1">
-            <p class="font-serif text-sm md:text-lg tracking-[0.2em] md:tracking-[0.3em]">P&A 01.05.26</p>
+            <p class="font-sans text-sm md:text-lg tracking-[0.2em] md:tracking-[0.3em] text-[#7a8464]">P&A 01.05.26</p>
         </div>
         <div class="flex justify-end flex-1">
-            <a href="https://tally.so/r/PdD7Md" target="_blank" class="border border-black px-4 py-2 uppercase text-[9px] tracking-widest hover:bg-black hover:text-white transition">Confirmar</a>
+            <a href="https://tally.so/r/PdD7Md" target="_blank" class="font-sans border border-[#7a8464] text-[#7a8464] px-4 py-2 uppercase text-[9px] tracking-widest hover:bg-[#7a8464] hover:text-white transition">Confirmar</a>
         </div>
     </nav>
 
@@ -84,17 +86,17 @@
         <section class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000');">
             <div>
                 <h2 class="font-script text-7xl md:text-[11rem] text-white mb-4 leading-none">Paula y Adrián</h2>
-                <div id="countdown" class="font-serif text-white text-base md:text-xl tracking-[0.3em] border-t border-white/30 pt-4 inline-block">Cargando...</div>
+                <div id="countdown" class="font-sans text-white text-base md:text-xl tracking-[0.3em] border-t border-white/30 pt-4 inline-block">Cargando...</div>
             </div>
         </section>
 
         <section class="split-section">
             <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200" class="split-image">
             <div class="p-12 md:p-24 text-center md:text-left">
-                <h3 class="font-serif text-5xl mb-6">Ubicación</h3>
-                <p class="font-serif text-2xl italic mb-4 text-[#7a8464]">18:00 Horas</p>
+                <h3 class="font-serif text-5xl mb-6 text-[#7a8464]">Ubicación</h3>
+                <p class="font-serif text-2xl italic mb-4 text-[#7a8464]">19:00 Horas</p>
                 <div class="font-serif text-sm opacity-80 mb-10 leading-relaxed">
-                    <p class="font-bold uppercase tracking-widest mb-2">Finca Aal Cachucho</p>
+                    <p class="font-bold uppercase tracking-widest mb-2 text-[#7a8464]">Finca Aal Cachucho</p>
                     <p>Camino de Correcaballos, s/n</p>
                     <p>San Agustín del Guadalix, Madrid</p>
                 </div>
@@ -104,17 +106,17 @@
 
         <section class="split-section">
             <div class="p-12 md:p-24 text-center md:text-left order-2 md:order-1">
-                <h3 class="font-serif text-5xl mb-6">El Itinerario</h3>
+                <h3 class="font-serif text-5xl mb-6 text-[#7a8464]">El Itinerario</h3>
                 <p class="font-serif text-2xl italic mb-4 text-[#7a8464]">Cronograma del día</p>
-                <p class="font-serif opacity-70 mb-10 leading-relaxed italic">"Cada detalle ha sido pensado para compartir este día único con vosotros."</p>
-                <a href="itinerario.html" target="_blank" class="btn-link">Ver cronograma completo</a>
+                <p class="font-serif opacity-70 mb-10 leading-relaxed italic text-[#7a8464]">"Cada detalle ha sido pensado para compartir este día único con vosotros."</p>
+                <a href="itinerario.html" class="btn-link">Ver cronograma completo</a>
             </div>
             <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200" class="split-image order-1 md:order-2">
         </section>
 
         <section class="py-32 text-center">
-            <h3 class="font-serif text-4xl mb-12">Nuestra aventura</h3>
-            <a href="historia.html" target="_blank" class="bg-[#7a8464] text-white px-12 py-4 uppercase text-[10px] tracking-widest hover:opacity-90 transition inline-block">Leer nuestra historia</a>
+            <h3 class="font-serif text-4xl mb-12 text-[#7a8464]">Nuestra aventura</h3>
+            <a href="historia.html" class="font-sans bg-[#7a8464] text-white px-12 py-4 uppercase text-[10px] tracking-widest hover:opacity-90 transition inline-block">Leer nuestra historia</a>
         </section>
 
         <section class="relative h-[60vh] flex items-center justify-center text-center text-white">
@@ -123,7 +125,7 @@
             </div>
             <div class="relative z-10 px-4">
                 <h3 class="font-serif text-5xl italic mb-8">¡Te esperamos!</h3>
-                <a href="https://tally.so/r/PdD7Md" target="_blank" class="bg-white text-black px-12 py-4 uppercase text-[10px] tracking-widest font-bold shadow-2xl">Confirmar asistencia</a>
+                <a href="https://tally.so/r/PdD7Md" target="_blank" class="font-sans bg-[#7a8464] text-white px-12 py-4 uppercase text-[10px] tracking-widest font-bold shadow-2xl hover:opacity-90 transition">Confirmar asistencia</a>
             </div>
         </section>
     </main>
@@ -133,19 +135,27 @@
             document.getElementById('invitation-cover').classList.add('opened');
             document.getElementById('main-nav').classList.add('opened-nav');
             document.body.style.overflow = 'auto';
-            localStorage.setItem('bodaAbierta', 'true');
+            sessionStorage.setItem('portadaAbierta', 'true');
         }
 
         window.onload = function() {
-            if (localStorage.getItem('bodaAbierta') === 'true') {
+            // Verificar si viene de otra página o si ya se abrió la portada en esta sesión
+            const referrer = document.referrer;
+            const vieneDeOtraPagina = referrer.includes('historia.html') || referrer.includes('itinerario.html');
+            const yaSeAbrio = sessionStorage.getItem('portadaAbierta') === 'true';
+            
+            if (vieneDeOtraPagina || yaSeAbrio) {
+                // Si viene de otra página o ya se abrió, ocultar la portada y mostrar la navegación
+                document.getElementById('invitation-cover').style.display = 'none';
                 document.getElementById('main-nav').classList.add('opened-nav');
                 document.body.style.overflow = 'auto';
             } else {
+                // Si es la primera vez, mostrar la portada
                 document.body.style.overflow = 'hidden';
             }
         };
 
-        const weddingDate = new Date("May 1, 2026 18:00:00").getTime();
+        const weddingDate = new Date("May 1, 2026 19:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = weddingDate - now;
